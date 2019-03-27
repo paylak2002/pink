@@ -1,0 +1,54 @@
+body{
+	margin: 0px;
+	padding: 0px;
+}
+body>div{
+	width: 630px;
+	background-color: black;
+	margin:auto;
+}
+#xax{
+	width: 630px;
+	height:510px;
+	border:solid green;
+	box-sizing: border-box;
+}
+#pink{
+	height: 300px;
+	width: 100%;
+	border:solid blue;
+	box-sizing: border-box;
+}
+#xax>div>div{
+	box-sizing: border-box;
+	border:1px solid black;
+	float:left;
+}
+.cube{
+	background-color: white;
+}
+.sigar{
+	position: relative;
+	left:0px;
+	top:200px;
+	height:60px;
+	width:130px;
+	box-sizing: border-box;
+}
+.sigar>img{
+	height: 100%;
+	width:100%;
+}
+.sharik{
+	width: 25px;
+	height: 25px;
+	border:solid white;
+	position: relative;
+	left:0px;
+	top:0px;
+}
+.sharik>img{
+	width:100%;
+	height: 100%;
+}
+/*42x34*/
