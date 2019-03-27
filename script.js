@@ -49,58 +49,76 @@ $(document).ready(()=>{
 			left_sharik--
 			top_sharik--
 		}
-		if(($("#sharik").position().left + $("#sharik").width()) < $("#sigar").position().left)
+		if(($("#sharik").position().left + $("#sharik").width()) <= $("#sigar").position().left)
 		{
 			bool_aj_dzax = false
 		}
-		else if($("#sharik").position().left > ($("#sigar").position().left + $("#sigar").width()))
+		else if($("#sharik").position().left >= ($("#sigar").position().left + $("#sigar").width()))
 		{
 			bool_aj_dzax = true 
 		}
+		else{
+			bool_aj_dzax = 'p'
+		}
 		$("#sharik").css({"left":left_sharik + "px","top":top_sharik + "px"})
 		console.log(bool_aj_dzax)
-		// if(
-		// 	($('#sharik').position().top + $('#sharik').height()) > $('#sigar').position().top &&
-		// 	$('#sharik').position().left > $('#sigar').position().left &&
-		// 	$('#sharik').position().left < ($('#sigar').position().left + $('#sigar').width())
-		// )
-		// {
-		// 	console.log('jan2')
-		// 	if(bool_top == true && bool_left == true)
-		// 	{
-		// 		bool_left = true
-		// 		bool_top = false
-		// 	}
-		// 	else if(bool_top == true && bool_left == false)
-		// 	{
-		// 		bool_left = false
-		// 		bool_top = false
-		// 	}
-		// }
-		// else if(
-		// 	$('#sharik').position().top > $('#sigar').position().top &&
-		// 	$('#sharik').position().top < ($('#sigar').position().top + $('#sigar').height()) &&
-		// 	($('#sharik').position().left + $('#sharik').width()) > $('#sigar').position().left
-		// )
-		// {
-		// 	if(bool_left == true && bool_top == true)
-		// 	{
-		// 		bool_left = false
-		// 		bool_top = true
-		// 	}
-		// }
-		// else if(
-		// 	$("#sharik").position().top > $("#sigar").position().top && 
-		// 	$("#sharik").position().top < ($("#sigar").position().top + $("#sigar").height()) && 
-		// 	$("#sharik").position().left < ($("#sigar").position().left + $("#sigar").width())
-		// )
-		// {
-		// 	if(bool_left == false && bool_top == true)
-		// 	{
-		// 		bool_top = true
-		// 		bool_left = true
-		// 	}
-		// }
+		if(
+			($('#sharik').position().top + $('#sharik').height()) > $('#sigar').position().top &&
+			$('#sharik').position().left > $('#sigar').position().left &&
+			$('#sharik').position().left < ($('#sigar').position().left + $('#sigar').width()) &&
+			$('#sharik').position().top < $('#sigar').position().top
+		)
+		{
+			if(bool_top == true && bool_left == true)
+			{
+				bool_left = true
+				bool_top = false
+			}
+			else if(bool_top == true && bool_left == false)
+			{
+				bool_left = false
+				bool_top = false
+			}
+		}
+		else if(
+			$('#sharik').position().top > $('#sigar').position().top &&
+			$('#sharik').position().top < ($('#sigar').position().top + $('#sigar').height()) &&
+			($('#sharik').position().left + $('#sharik').width()) > $('#sigar').position().left &&
+			bool_aj_dzax == false
+		)
+		{
+			if(bool_left == true && bool_top == true)
+			{
+				bool_left = false
+				bool_top = true
+			}
+		}
+		else if(
+			$("#sharik").position().top > $("#sigar").position().top && 
+			$("#sharik").position().top < ($("#sigar").position().top + $("#sigar").height()) && 
+			$("#sharik").position().left < ($("#sigar").position().left + $("#sigar").width()) &&
+			bool_aj_dzax == true
+		)
+		{
+			if(bool_left == false && bool_top == true)
+			{
+				bool_top = true
+				bool_left = true
+			}
+		}
+		else if(left_sharik < 0)
+		{
+			if(bool_top == true && bool_left == false)
+			{
+				bool_top = true
+				bool_left = true
+			}
+			else if(bool_top == false && bool_left == false)
+			{
+				bool_top = false
+				bool_left = true
+			}
+		}
 	},40)
 	document.onkeydown = key
 })
