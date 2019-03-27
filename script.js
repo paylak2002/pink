@@ -1,10 +1,11 @@
 const x = 41
 const y = 33
 const sharik = document.getElementById('sharik')
-var left_sharik = 0
+var left_sharik = 300
 var top_sharik = 0
 var bool_top = true
-var bool_left = true
+var bool_left = false
+var bool_aj_dzax = false
 $(document).ready(()=>{
 	var left = 0
 	console.log("hello")
@@ -48,44 +49,58 @@ $(document).ready(()=>{
 			left_sharik--
 			top_sharik--
 		}
+		if(($("#sharik").position().left + $("#sharik").width()) < $("#sigar").position().left)
+		{
+			bool_aj_dzax = false
+		}
+		else if($("#sharik").position().left > ($("#sigar").position().left + $("#sigar").width()))
+		{
+			bool_aj_dzax = true 
+		}
 		$("#sharik").css({"left":left_sharik + "px","top":top_sharik + "px"})
-		if(
-			($('#sharik').position().top + $('#sharik').height()) > $('#sigar').position().top &&
-			$('#sharik').position().left > $('#sigar').position().left &&
-			$('#sharik').position().left < ($('#sigar').position().left + $('#sigar').width())
-		)
-		{
-			console.log('jan2')
-			if(bool_top == true && bool_left == true)
-			{
-				bool_left = true
-				bool_top = false
-			}
-			else if(bool_top == true && bool_left == false)
-			{
-				bool_left = false
-				bool_top = false
-			}
-		}
-		else if(
-			$('#sharik').position().top > $('#sigar').position().top &&
-			$('#sharik').position().top < ($('#sigar').position().top + $('#sigar').height()) &&
-			($('#sharik').position().left + $('#sharik').width()) > $('#sigar').position().left && bool_left == true
-		)
-		{
-			bool_left = false
-			bool_top = true
-		}
-		else if(
-			$('#sharik').position().top > $('#sigar').position().top &&
-			$('#sharik').position().top < ($('#sigar').position().top + $('#sigar').height()) &&
-			$('#sharik').position().left < ($('#sigar').position().left + $('#sigar').width()) && bool_left == false
-		)
-		{
-			console.log('jan')
-			bool_left = true
-			bool_top = true
-		}
+		console.log(bool_aj_dzax)
+		// if(
+		// 	($('#sharik').position().top + $('#sharik').height()) > $('#sigar').position().top &&
+		// 	$('#sharik').position().left > $('#sigar').position().left &&
+		// 	$('#sharik').position().left < ($('#sigar').position().left + $('#sigar').width())
+		// )
+		// {
+		// 	console.log('jan2')
+		// 	if(bool_top == true && bool_left == true)
+		// 	{
+		// 		bool_left = true
+		// 		bool_top = false
+		// 	}
+		// 	else if(bool_top == true && bool_left == false)
+		// 	{
+		// 		bool_left = false
+		// 		bool_top = false
+		// 	}
+		// }
+		// else if(
+		// 	$('#sharik').position().top > $('#sigar').position().top &&
+		// 	$('#sharik').position().top < ($('#sigar').position().top + $('#sigar').height()) &&
+		// 	($('#sharik').position().left + $('#sharik').width()) > $('#sigar').position().left
+		// )
+		// {
+		// 	if(bool_left == true && bool_top == true)
+		// 	{
+		// 		bool_left = false
+		// 		bool_top = true
+		// 	}
+		// }
+		// else if(
+		// 	$("#sharik").position().top > $("#sigar").position().top && 
+		// 	$("#sharik").position().top < ($("#sigar").position().top + $("#sigar").height()) && 
+		// 	$("#sharik").position().left < ($("#sigar").position().left + $("#sigar").width())
+		// )
+		// {
+		// 	if(bool_left == false && bool_top == true)
+		// 	{
+		// 		bool_top = true
+		// 		bool_left = true
+		// 	}
+		// }
 	},40)
 	document.onkeydown = key
 })
