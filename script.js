@@ -1,9 +1,9 @@
 const x = 41
 const y = 33
 const sharik = document.getElementById('sharik')
-var left_sharik = 300
-var top_sharik = 0
-var bool_top = true
+var left_sharik = 200
+var top_sharik = -400
+var bool_top = false
 var bool_left = false
 var bool_aj_dzax = false
 $(document).ready(()=>{
@@ -20,11 +20,11 @@ $(document).ready(()=>{
 		var IdKeyCode = key.keyCode
 		if(IdKeyCode == 39 && left<$("#xax").width() - $("#sigar").width())
 		{
-			left+=4
+			left+=8
 		}
 		else if(IdKeyCode == 37 && left>0)
 		{
-			left-=4
+			left-=8
 		}
 		console.log(left)
 		$("#sigar").css('left',left + "px")
@@ -61,7 +61,6 @@ $(document).ready(()=>{
 			bool_aj_dzax = 'p'
 		}
 		$("#sharik").css({"left":left_sharik + "px","top":top_sharik + "px"})
-		console.log(bool_aj_dzax)
 		if(
 			($('#sharik').position().top + $('#sharik').height()) > $('#sigar').position().top &&
 			$('#sharik').position().left > $('#sigar').position().left &&
@@ -81,8 +80,8 @@ $(document).ready(()=>{
 			}
 		}
 		else if(
-			$('#sharik').position().top > $('#sigar').position().top &&
-			$('#sharik').position().top < ($('#sigar').position().top + $('#sigar').height()) &&
+			($('#sharik').position().top + $('#sharik').height()) > $('#sigar').position().top &&
+			($('#sharik').position().top + $('#sharik').height()) < ($('#sigar').position().top + $('#sigar').height()) &&
 			($('#sharik').position().left + $('#sharik').width()) > $('#sigar').position().left &&
 			bool_aj_dzax == false
 		)
@@ -94,8 +93,8 @@ $(document).ready(()=>{
 			}
 		}
 		else if(
-			$("#sharik").position().top > $("#sigar").position().top && 
-			$("#sharik").position().top < ($("#sigar").position().top + $("#sigar").height()) && 
+			($('#sharik').position().top + $('#sharik').height()) > $("#sigar").position().top && 
+			($('#sharik').position().top + $('#sharik').height()) < ($("#sigar").position().top + $("#sigar").height()) && 
 			$("#sharik").position().left < ($("#sigar").position().left + $("#sigar").width()) &&
 			bool_aj_dzax == true
 		)
@@ -119,6 +118,35 @@ $(document).ready(()=>{
 				bool_left = true
 			}
 		}
-	},40)
+		else if(top_sharik < 0 - $('#xax').height() - $('#sharik').height()){
+			if(bool_top == false && bool_left == true)
+			{
+				bool_top = true
+				bool_left = true
+			}
+			else if(bool_top == false && bool_left == false)
+			{
+				bool_top = true
+				bool_left = false
+			}
+		}
+		else if(left_sharik > $('#xax').width() - $('#sharik').width())
+		{
+			if(bool_top == true && bool_left == true)
+			{
+				bool_top = true
+				bool_left = false
+			}
+			else if(bool_top == false && bool_left == true)
+			{
+				bool_top = false 
+				bool_left = false
+			}
+		}
+		else if($("#sharik").position().top + $("#sharik").height() > $("#pink").height() + $("#xax").height())
+		{
+			location.href = "gameOver.html"
+		}
+	},5)
 	document.onkeydown = key
 })
