@@ -38,8 +38,8 @@ console.log(matrix[0].length)
 const x = 41
 const y = 33
 const sharik = document.getElementById('sharik')
-var left_sharik = 200
-var top_sharik = -400
+var left_sharik = 100
+var top_sharik = -100
 var bool_top = false
 var bool_left = false
 var bool_aj_dzax = false

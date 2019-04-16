@@ -3,18 +3,18 @@ body{
 	padding: 0px;
 }
 body>div{
-	width: 630px;
+	width: 315px;
 	background-color: black;
 	margin:auto;
 }
 #xax{
-	width: 630px;
-	height:510px;
+	width: 315px;
+	height:255px;
 	border:solid green;
 	box-sizing: border-box;
 }
 #pink{
-	height: 300px;
+	height: 150px;
 	width: 100%;
 	border:solid blue;
 	box-sizing: border-box;
@@ -30,9 +30,9 @@ body>div{
 .sigar{
 	position: relative;
 	left:0px;
-	top:200px;
-	height:25px;
-	width:130px;
+	top:100px;
+	height:12.5px;
+	width:65px;
 	box-sizing: border-box;
 }
 .sigar>img{
@@ -40,8 +40,8 @@ body>div{
 	width:100%;
 }
 .sharik{
-	width: 25px;
-	height: 25px;
+	width: 12.5px;
+	height: 12.5px;
 	position: relative;
 	left:0px;
 	top:0px;
