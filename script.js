@@ -229,6 +229,6 @@ $(document).ready(()=>{
 			$("<div></div>").attr('id','gameOverDivGlxavor').appendTo('body')
 			$("<h1>Game Over</h1>").appendTo("#gameOverDivGlxavor")
 		}
-	},5)
+	},3)
 	document.onkeydown = key
 })
