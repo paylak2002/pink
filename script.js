@@ -30,8 +30,8 @@ const matrix = [
 	[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 	[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 	[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-	[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-	[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+	[0,0,1,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 	[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ]
 console.log(matrix[0].length)
@@ -43,6 +43,7 @@ var top_sharik = -400
 var bool_top = false
 var bool_left = false
 var bool_aj_dzax = false
+var arrObj = []
 $(document).ready(()=>{
 	var left = 0
 	console.log("hello")
@@ -59,6 +60,7 @@ $(document).ready(()=>{
 			if(matrix[i][j] == 1 && $("#xax").children()[i].children[j])
 			{
 				$("#xax").children()[i].children[j].style.backgroundColor = 'white'
+				arrObj.push({name:"cube"})
 			}
 			else if($("#xax").children()[i]){
 				if($("#xax").children()[i].children[j])
@@ -94,32 +96,38 @@ $(document).ready(()=>{
 	setInterval(()=>{
 		var XLeft = getCoords(document.getElementById('sharik')).left
 		var YTop = getCoords(document.getElementById('sharik')).top
-		element = document.elementFromPoint(XLeft+25.5,YTop+25.5)
-		if(getCoords(document.getElementById('sharik')).top < $('#xax').height())
-		{
-			if(element.className == "cube")
-			{
-				element.style.backgroundColor = "black";
-			}
-		}
+		var element
 		if(bool_top == true && bool_left == true)
 		{
+			element = document.elementFromPoint(XLeft+$('#sharik').width(),YTop+$('#sharik').height())
 			left_sharik++
 			top_sharik++
 		}
 		else if(bool_top == true && bool_left == false)
 		{
+			element = document.elementFromPoint(XLeft-1,YTop+$('#sharik').height())
 			left_sharik--
 			top_sharik++
 		}
 		else if(bool_top == false && bool_left == true)
 		{
+			element = document.elementFromPoint(XLeft+$("#sharik").width(),YTop-1)
 			left_sharik++
 			top_sharik--
 		}
 		else{
+			element = document.elementFromPoint(XLeft-1,YTop-1)
 			left_sharik--
 			top_sharik--
+		}
+		if(getCoords(document.getElementById('sharik')).top < $('#xax').height())
+		{
+			if(element.className == "cube" && element.style.backgroundColor == "white")
+			{
+				element.style.backgroundColor = "black"
+				arrObj.splice(0, 1)
+				console.log(arrObj)
+			}
 		}
 		if(($("#sharik").position().left + $("#sharik").width()) <= $("#sigar").position().left)
 		{
@@ -217,7 +225,9 @@ $(document).ready(()=>{
 		}
 		else if($("#sharik").position().top + $("#sharik").height() > $("#pink").height() + $("#xax").height())
 		{
-			location.href = "gameOver.html"
+			$('body').empty()
+			$("<div></div>").attr('id','gameOverDivGlxavor').appendTo('body')
+			$("<h1>Game Over</h1>").appendTo("#gameOverDivGlxavor")
 		}
 	},5)
 	document.onkeydown = key
